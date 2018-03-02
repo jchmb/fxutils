@@ -175,6 +175,7 @@ public class ListBinder<T, U> {
 	/**
 	 * Convenience function to get a new ListBinder for Node lists. This can be called
 	 * in conjunction with Parent objects that expose the Parent#getChildren method as public.
+	 * This method allows sorting and filtering in the target list independent of the source list.
 	 * @param list
 	 * @param nodeList
 	 * @param mapper
@@ -205,5 +206,30 @@ public class ListBinder<T, U> {
 			binder.mirrorProperty()
 		);
 		return binder;
+	}
+	
+	/**
+	 * Convenience function to get a new ListBinder for Node lists. This can be called
+	 * in conjunction with Parent objects that expose the Parent#getChildren method as public.
+	 * @param list
+	 * @param nodeList
+	 * @param mapper
+	 * @param extraProperties
+	 * @return
+	 */
+	public static final <T> ListBinder<T, Node> nodeListBinder(
+			final ListProperty<T> list,
+			final ObservableList<Node> nodeList,
+			final Function<T, Node> mapper,
+			final Property<?>... extraProperties
+	) {
+		return nodeListBinder(
+			list,
+			nodeList,
+			mapper,
+			x -> true,
+			(x, y) -> 0,
+			extraProperties
+		);
 	}
 }
