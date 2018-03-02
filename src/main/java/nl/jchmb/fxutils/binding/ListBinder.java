@@ -94,6 +94,11 @@ public class ListBinder<T, U> {
 		this.mirrorList.bind(binding);
 	}
 	
+	public final void unbind() {
+		this.mirrorList.unbind();
+		this.binding = null;
+	}
+	
 	/**
 	 * Add an extra property that trigger a change in the target list when changed.
 	 * @param property
@@ -137,10 +142,10 @@ public class ListBinder<T, U> {
 	}
 	
 	/**
-	 * Update the list.
+	 * Update the list by unbinding-binding.
 	 */
 	private final void update() {
-		this.mirrorList.unbind();
+		this.unbind();
 		this.bind();
 	}
 	
