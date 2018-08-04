@@ -1,8 +1,11 @@
 JavaFX Utils Library
 ====================
 
-Code Sample
------------
+Code Samples
+------------
+
+ListBinder
+----------
 
 ```java
 final Group group = new Group();
